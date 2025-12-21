@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KeepQuick - Goodbye</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(
+          135deg,
+          #fbbf24 0%,
+          #f59e0b 50%,
+          #f97316 100%
+        );
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+      }
+
+      .container {
+        background: white;
+        border-radius: 20px;
+        padding: 3rem;
+        max-width: 500px;
+        text-align: center;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+      }
+
+      .emoji {
+        font-size: 4rem;
+        margin-bottom: 1.5rem;
+        animation: wave 1.5s ease-in-out infinite;
+      }
+
+      @keyframes wave {
+        0%,
+        100% {
+          transform: rotate(0deg);
+        }
+        25% {
+          transform: rotate(-10deg);
+        }
+        75% {
+          transform: rotate(10deg);
+        }
+      }
+
+      h1 {
+        color: #1f2937;
+        font-size: 2rem;
+        margin-bottom: 1rem;
+      }
+
+      p {
+        color: #6b7280;
+        font-size: 1.1rem;
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+      }
+
+      .highlight {
+        color: #f59e0b;
+        font-weight: 600;
+      }
+
+      .footer {
+        margin-top: 2rem;
+        padding-top: 2rem;
+        border-top: 1px solid #e5e7eb;
+        color: #9ca3af;
+        font-size: 0.9rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="emoji">👋</div>
+      <h1>We're Sorry to See You Go!</h1>
+      <p>
+        Thank you for trying <span class="highlight">KeepQuick</span>. We hope
+        you found it useful during your time with us.
+      </p>
+      <p>
+        We wish you all the best and hope you find something that perfectly fits
+        your needs!
+      </p>
+      <div class="footer">Made with 💛 by AskitEndo</div>
+    </div>
+  </body>
+</html>

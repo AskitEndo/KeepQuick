@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!--
+    KeepQuick Side Panel
+    Created by AskitEndo
+    GitHub: https://github.com/AskitEndo
+  -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="AskitEndo" />
+    <title>KeepQuick - Quick Access to Google Keep</title>
+    <style>
+      html {
+        color-scheme: light dark;
+        scrollbar-width: thin;
+        overflow: hidden;
+      }
+
+      body {
+        margin: 0;
+      }
+
+      iframe {
+        width: 100vw;
+        height: 99.8vh;
+        overflow: hidden;
+      }
+
+      .loader {
+        width: 48px;
+        height: 48px;
+        border: 5px solid #fff;
+        border-bottom-color: transparent;
+        border-radius: 50%;
+        display: inline-block;
+        box-sizing: border-box;
+        animation: rotation 1s linear infinite;
+      }
+
+      @keyframes rotation {
+        0% {
+          transform: rotate(0deg);
+        }
+
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div style="position: absolute; top: 2lh; left: 40%">
+      <span class="loader"></span>
+    </div>
+    <iframe src="https://keep.google.com/" frameborder="0"></iframe>
+    <script type="module" src="./panel.js"></script>
+  </body>
+</html>

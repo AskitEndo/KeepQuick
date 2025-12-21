@@ -1,0 +1,63 @@
+{
+  "action": {
+    "default_popup": "popup/index.html",
+    "default_title": "KeepQuick - Quick Access (Ctrl+Shift+Q)"
+  },
+  "author": "AskitEndo",
+  "background": {
+    "service_worker": "background/background.js",
+    "type": "module"
+  },
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Q",
+        "linux": "Ctrl+Shift+Q",
+        "mac": "Command+Shift+Q",
+        "windows": "Ctrl+Shift+Q"
+      }
+    }
+  },
+  "content_scripts": [
+    {
+      "all_frames": true,
+      "css": ["panel/style.css"],
+      "matches": ["https://keep.google.com/*"]
+    }
+  ],
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "enabled": true,
+        "id": "ig_frame_rule",
+        "path": "net_request.json"
+      }
+    ]
+  },
+  "default_locale": "en",
+  "description": "__MSG_extDescription__",
+  "homepage_url": "https://github.com/AskitEndo",
+  "host_permissions": ["https://keep.google.com/*"],
+  "icons": {
+    "16": "icon-24.png",
+    "24": "icon-24.png",
+    "48": "icon-128.png",
+    "128": "icon-128.png",
+    "430": "icon-430.png"
+  },
+  "manifest_version": 3,
+  "minimum_chrome_version": "112",
+  "name": "__MSG_extName__",
+  "offline_enabled": true,
+  "options_page": "options/index.html",
+  "permissions": [
+    "declarativeNetRequestWithHostAccess",
+    "sidePanel",
+    "storage"
+  ],
+  "short_name": "KeepQuick",
+  "side_panel": {
+    "default_path": "panel/index.html"
+  },
+  "version": "1.0.0"
+}
