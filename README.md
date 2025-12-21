@@ -77,10 +77,6 @@ KeepQuick/
 │   └── style.css             # Panel styles
 ├── popup/
 │   └── index.html            # Popup window
-├── _locales/                 # Internationalization
-│   ├── en/
-│   │   └── messages.json
-│   └── [25+ languages]
 ├── manifest.json             # Extension manifest
 ├── net_request.json          # Network request rules
 └── icons/                    # Extension icons
@@ -163,7 +159,6 @@ If you find KeepQuick useful, consider supporting its development:
 - 🖥️ Side Panel and Popup Window support
 - ⚙️ Customizable options page behavior
 - 🎨 Beautiful amber/orange theme with dark mode
-- 🌍 Multi-language support (25+ languages)
 - 🔒 Privacy-focused design
 
 ---

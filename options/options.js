@@ -6,22 +6,22 @@
 
 const eId = document.getElementById.bind(document);
 
-// Set up internationalization for text elements
-const setLang = (/** @type {string} */ key) => {
+// Set up text content for elements (no localization)
+const setText = (/** @type {string} */ key, /** @type {string} */ text) => {
   const element = eId(key);
   if (element) {
-    element.textContent = chrome.i18n.getMessage(key);
+    element.textContent = text;
   }
 };
 
-// Apply translations
-setLang("open_keep_in");
-setLang("side_panel");
-setLang("popup_window");
-setLang("options_page_behavior");
-setLang("open_on_startup");
-setLang("open_on_update");
-setLang("never_open");
+// Apply text labels
+setText("open_keep_in", "Choose how to open Google Keep:");
+setText("side_panel", "Side Panel (Recommended)");
+setText("popup_window", "Popup Window");
+setText("options_page_behavior", "When should this options page open?");
+setText("open_on_startup", "Open when Chrome starts");
+setText("open_on_update", "Open when extension updates");
+setText("never_open", "Never open automatically");
 
 // Handle "Open Keep in" setting
 const openPanelConfig = eId("open_panel_config");
