@@ -50,6 +50,7 @@ temp/
 *.cache
 
 # Chrome Extension Specific
+_metadata/
 # Uncomment if you generate a private key
 # key.pem
 # *.pem
