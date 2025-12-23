@@ -1,0 +1,70 @@
+{
+  "action": {
+    "default_popup": "popup/index.html",
+    "default_title": "KeepQuick - Quick Access (Ctrl+Shift+Q)"
+  },
+  "author": "AskitEndo",
+  "background": {
+    "scripts": ["background/background.js"]
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "keepquick@askitendo.com",
+      "strict_min_version": "109.0"
+    }
+  },
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Q",
+        "linux": "Ctrl+Shift+Q",
+        "mac": "Command+Shift+Q",
+        "windows": "Ctrl+Shift+Q"
+      }
+    },
+    "open-sidebar": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+K"
+      },
+      "description": "Open KeepQuick in sidebar"
+    }
+  },
+  "content_scripts": [
+    {
+      "all_frames": true,
+      "css": ["panel/style.css"],
+      "matches": ["https://keep.google.com/*"]
+    }
+  ],
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "enabled": true,
+        "id": "ig_frame_rule",
+        "path": "net_request.json"
+      }
+    ]
+  },
+  "description": "Quick access to Google Keep in sidebar/popup. Open source for Firefox & Zen Browser",
+  "homepage_url": "https://github.com/AskitEndo",
+  "host_permissions": ["https://keep.google.com/*"],
+  "icons": {
+    "16": "icon-24.png",
+    "24": "icon-24.png",
+    "48": "icon-128.png",
+    "128": "icon-128.png",
+    "430": "icon-430.png"
+  },
+  "manifest_version": 3,
+  "name": "KeepQuick - Quick Access to Google Keep",
+  "offline_enabled": true,
+  "options_page": "options/index.html",
+  "permissions": ["declarativeNetRequestWithHostAccess", "storage"],
+  "short_name": "KeepQuick",
+  "sidebar_action": {
+    "default_icon": "icon-128.png",
+    "default_title": "KeepQuick",
+    "default_panel": "panel/index.html"
+  },
+  "version": "1.0.0"
+}

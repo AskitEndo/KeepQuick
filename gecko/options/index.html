@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="AskitEndo" />
+    <title>KeepQuick - Settings</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --primary-color: #f59e0b;
+        --primary-hover: #d97706;
+        --accent-color: #fb923c;
+        --bg-light: #ffffff;
+        --bg-dark: #1a1a1a;
+        --card-light: #fffbeb;
+        --card-dark: #2a2a2a;
+        --text-light: #202124;
+        --text-dark: #e8eaed;
+        --border-light: #fde68a;
+        --border-dark: #78350f;
+        --success-bg: #d1fae5;
+        --success-text: #065f46;
+        --success-border: #6ee7b7;
+      }
+
+      body {
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, sans-serif;
+        background: linear-gradient(
+          135deg,
+          #fbbf24 0%,
+          #f59e0b 50%,
+          #f97316 100%
+        );
+        min-height: 100vh;
+        padding: 1rem;
+        color-scheme: light dark;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        body {
+          background: linear-gradient(
+            135deg,
+            #92400e 0%,
+            #78350f 50%,
+            #451a03 100%
+          );
+        }
+      }
+
+      .container {
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+
+      /* Header - More Compact */
+      .header {
+        text-align: center;
+        margin-bottom: 1.5rem;
+        animation: fadeIn 0.6s ease;
+      }
+
+      .header h1 {
+        color: white;
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+      }
+
+      .header p {
+        color: rgba(255, 255, 255, 0.95);
+        font-size: 1rem;
+        margin-bottom: 0.75rem;
+      }
+
+      .shortcut-info {
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(10px);
+        padding: 0.75rem 1.25rem;
+        border-radius: 12px;
+        display: inline-block;
+      }
+
+      .shortcut-info kbd {
+        background: white;
+        color: var(--primary-color);
+        padding: 0.25rem 0.5rem;
+        border-radius: 6px;
+        font-weight: 700;
+        font-size: 0.85rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Grid Layout for Cards */
+      .cards-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.25rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .card {
+        background: light-dark(var(--bg-light), var(--card-dark));
+        border-radius: 14px;
+        padding: 1.5rem;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        animation: fadeIn 0.6s ease;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .card h2 {
+        color: light-dark(var(--text-light), var(--text-dark));
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 1.25rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding-bottom: 0.75rem;
+        border-bottom: 2px solid
+          light-dark(var(--border-light), var(--border-dark));
+      }
+
+      /* Compact Info Box */
+      .info-box {
+        background: light-dark(var(--card-light), #1a1a1a);
+        border-left: 4px solid var(--primary-color);
+        padding: 0.875rem 1.25rem;
+        border-radius: 8px;
+        margin-bottom: 1.25rem;
+        flex-grow: 1;
+      }
+
+      .info-box p {
+        color: light-dark(var(--text-light), var(--text-dark));
+        line-height: 1.5;
+        margin-bottom: 0.5rem;
+        font-size: 0.95rem;
+      }
+
+      .info-box strong {
+        color: var(--primary-color);
+      }
+
+      .info-box ul {
+        margin-left: 1.25rem;
+        margin-top: 0.5rem;
+        line-height: 1.6;
+        font-size: 0.9rem;
+      }
+
+      .info-box li {
+        margin-bottom: 0.25rem;
+      }
+
+      /* Settings Groups */
+      .settings-group {
+        margin-bottom: 1.25rem;
+      }
+
+      .settings-group h3 {
+        color: light-dark(var(--text-light), var(--text-dark));
+        font-size: 1rem;
+        font-weight: 600;
+        margin-bottom: 0.875rem;
+      }
+
+      /* Compact Radio Options */
+      .radio-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      .radio-option {
+        display: flex;
+        align-items: center;
+        padding: 0.875rem;
+        background: light-dark(#ffffff, #0f0f0f);
+        border: 2px solid light-dark(var(--border-light), var(--border-dark));
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .radio-option:hover {
+        border-color: var(--primary-color);
+        background: light-dark(#fef3c7, #1f1f1f);
+      }
+
+      .radio-option input[type="radio"] {
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        border: 3px solid var(--primary-color);
+        border-radius: 50%;
+        margin-right: 0.875rem;
+        cursor: pointer;
+        position: relative;
+        transition: all 0.2s ease;
+      }
+
+      .radio-option input[type="radio"]:checked {
+        background: var(--primary-color);
+        box-shadow: 0 0 0 3px light-dark(#fef3c7, #78350f);
+      }
+
+      .radio-option input[type="radio"]:checked::after {
+        content: "";
+        position: absolute;
+        width: 7px;
+        height: 7px;
+        background: white;
+        border-radius: 50%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      .radio-option label {
+        cursor: pointer;
+        flex: 1;
+        color: light-dark(var(--text-light), var(--text-dark));
+        font-weight: 500;
+        font-size: 0.95rem;
+      }
+
+      /* Compact Select */
+      .select-wrapper {
+        position: relative;
+        margin-bottom: 0.875rem;
+      }
+
+      .select-wrapper select {
+        width: 100%;
+        padding: 0.875rem;
+        background: light-dark(#ffffff, #0f0f0f);
+        border: 2px solid light-dark(var(--border-light), var(--border-dark));
+        border-radius: 10px;
+        color: light-dark(var(--text-light), var(--text-dark));
+        font-size: 0.95rem;
+        cursor: pointer;
+        appearance: none;
+        transition: all 0.2s ease;
+      }
+
+      .select-wrapper select:hover {
+        border-color: var(--primary-color);
+      }
+
+      .select-wrapper::after {
+        content: "▼";
+        position: absolute;
+        right: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        pointer-events: none;
+        color: var(--primary-color);
+        font-size: 0.8rem;
+      }
+
+      /* Developer Section - More Compact */
+      .developer-section {
+        background: linear-gradient(
+          135deg,
+          light-dark(#fef3c7, #78350f) 0%,
+          light-dark(#fde68a, #92400e) 100%
+        );
+        border-radius: 14px;
+        padding: 1.5rem;
+        text-align: center;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .avatar {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        border: 3px solid var(--primary-color);
+        margin: 0 auto 1rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      }
+
+      .developer-section h3 {
+        color: light-dark(var(--text-light), white);
+        font-size: 1.4rem;
+        margin-bottom: 0.5rem;
+        font-weight: 700;
+      }
+
+      .developer-section p {
+        color: light-dark(#78350f, #fde68a);
+        margin-bottom: 1.25rem;
+        font-size: 0.95rem;
+      }
+
+      .github-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        color: white;
+        background: var(--primary-color);
+        text-decoration: none;
+        font-weight: 600;
+        padding: 0.625rem 1.25rem;
+        border-radius: 10px;
+        transition: all 0.2s ease;
+        box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+        margin-bottom: 1.25rem;
+        font-size: 0.95rem;
+        width: fit-content;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .github-link:hover {
+        background: var(--primary-hover);
+        transform: translateY(-1px);
+        box-shadow: 0 6px 16px rgba(245, 158, 11, 0.4);
+      }
+
+      .qr-section {
+        margin-top: 1rem;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .qr-section h4 {
+        color: light-dark(var(--text-light), white);
+        font-size: 1.1rem;
+        margin-bottom: 0.875rem;
+      }
+
+      .qr-container {
+        background: white;
+        padding: 0.75rem;
+        border-radius: 12px;
+        display: inline-block;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        margin: 0 auto;
+      }
+
+      .qr-code {
+        width: 140px;
+        height: 140px;
+        display: block;
+      }
+
+      .qr-caption {
+        margin-top: 0.75rem;
+        font-size: 0.85rem;
+        color: light-dark(#78350f, #fde68a);
+      }
+
+      /* Status Message */
+      .status-message {
+        padding: 0.75rem;
+        border-radius: 8px;
+        margin-top: 0.875rem;
+        text-align: center;
+        font-weight: 500;
+        display: none;
+        animation: fadeIn 0.3s ease;
+        font-size: 0.9rem;
+      }
+
+      .status-message.success {
+        background: var(--success-bg);
+        color: var(--success-text);
+        border: 1px solid var(--success-border);
+      }
+
+      /* Footer */
+      .footer {
+        text-align: center;
+        margin-top: 1.5rem;
+        padding: 1.5rem;
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 0.9rem;
+      }
+
+      /* Note text */
+      .note-text {
+        color: light-dark(#6b7280, #9ca3af);
+        font-size: 0.85rem;
+        margin-top: 0.5rem;
+        line-height: 1.4;
+      }
+
+      /* Animations */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 768px) {
+        body {
+          padding: 0.75rem;
+        }
+
+        .cards-grid {
+          grid-template-columns: 1fr;
+          gap: 1rem;
+        }
+
+        .card {
+          padding: 1.25rem;
+        }
+
+        .header h1 {
+          font-size: 1.75rem;
+        }
+
+        .qr-code {
+          width: 120px;
+          height: 120px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .header h1 {
+          font-size: 1.5rem;
+        }
+
+        .shortcut-info {
+          padding: 0.625rem 1rem;
+          font-size: 0.9rem;
+        }
+
+        .shortcut-info kbd {
+          padding: 0.2rem 0.4rem;
+          font-size: 0.8rem;
+        }
+
+        .qr-code {
+          width: 100px;
+          height: 100px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Header -->
+      <div class="header">
+        <h1><span>💡</span> KeepQuick</h1>
+        <p>Lightning-Fast Access to Your Google Keep Notes</p>
+        <div class="shortcut-info">
+          <span style="color: white">Press</span>
+          <kbd>Ctrl</kbd>
+          <span style="color: white">+</span>
+          <kbd>Shift</kbd>
+          <span style="color: white">+</span>
+          <kbd>Q</kbd>
+          <span style="color: white">to open KeepQuick</span>
+        </div>
+      </div>
+
+      <!-- Grid Layout for Cards -->
+      <div class="cards-grid">
+        <!-- About Section -->
+        <div class="card">
+          <h2>📖 About KeepQuick</h2>
+          <div class="info-box">
+            <p>
+              <strong>KeepQuick</strong> gives you instant access to Google Keep
+              right from your browser.
+            </p>
+            <p>✨ Features:</p>
+            <ul style="color: white">
+              <li>Quick access via keyboard shortcut (Ctrl+Shift+Q)</li>
+              <li>Open in Side Panel or Popup Window</li>
+              <li>Customize when the options page opens</li>
+              <li>Free and Open Source</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Display Mode Settings -->
+        <div class="card">
+          <h2>🖥️ Display Mode</h2>
+          <div class="settings-group">
+            <h3 id="open_keep_in">Choose how to open Google Keep:</h3>
+            <div class="radio-group" id="open_panel_config">
+              <div class="radio-option">
+                <input
+                  type="radio"
+                  name="open_keep"
+                  value="sidePanel"
+                  id="sidePanelOption"
+                  checked
+                />
+                <label for="sidePanelOption" id="side_panel"
+                  >Side Panel (Recommended)</label
+                >
+              </div>
+              <div class="radio-option">
+                <input
+                  type="radio"
+                  name="open_keep"
+                  value="popup"
+                  id="popupOption"
+                />
+                <label for="popupOption" id="popup_window">Popup Window</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Options Page Behavior -->
+        <div class="card">
+          <h2>⚙️ Options Page Behavior</h2>
+          <div class="settings-group">
+            <h3 id="options_page_behavior">
+              When should this options page open?
+            </h3>
+            <div class="radio-group" id="options_behavior_config">
+              <div class="radio-option">
+                <input
+                  type="radio"
+                  name="options_behavior"
+                  value="never"
+                  id="neverOption"
+                  checked
+                />
+                <label for="neverOption" id="never_open"
+                  >Never open automatically</label
+                >
+              </div>
+              <div class="radio-option">
+                <input
+                  type="radio"
+                  name="options_behavior"
+                  value="startup"
+                  id="startupOption"
+                />
+                <label for="startupOption" id="open_on_startup"
+                  >Open when Chrome starts</label
+                >
+              </div>
+              <div class="radio-option">
+                <input
+                  type="radio"
+                  name="options_behavior"
+                  value="update"
+                  id="updateOption"
+                />
+                <label for="updateOption" id="open_on_update"
+                  >Open when extension updates</label
+                >
+              </div>
+            </div>
+            <div class="status-message" id="statusMessage"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Section: Developer Support -->
+      <div class="cards-grid">
+        <!-- Developer Support -->
+        <div class="card">
+          <h2>💝 Support the Developer</h2>
+          <div class="developer-section">
+            <img
+              src="https://avatars.githubusercontent.com/u/160294709?v=4"
+              alt="Developer Avatar"
+              class="avatar"
+            />
+            <h3>AskitEndo</h3>
+            <p>Solo Developer & Creator</p>
+            <a
+              href="https://github.com/AskitEndo"
+              target="_blank"
+              class="github-link"
+            >
+              <svg
+                width="18"
+                height="18"
+                fill="currentColor"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"
+                />
+              </svg>
+              View on GitHub
+            </a>
+
+            <div class="qr-section">
+              <h4>☕ Buy Me a Coffee</h4>
+              <p>Support the development of KeepQuick!</p>
+              <div class="qr-container">
+                <img
+                  src="https://raw.githubusercontent.com/AskitEndo/crampPanchayat/main/src/assets/images/upi-qr.png"
+                  alt="Donate via UPI"
+                  class="qr-code"
+                />
+              </div>
+              <p class="qr-caption">Scan to donate via Google Pay/UPI</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="footer">
+        <p>Made with 💛 by AskitEndo</p>
+        <p>Version 1.0.0 | Open Source</p>
+      </div>
+    </div>
+
+    <script type="module" src="./options.js"></script>
+  </body>
+</html>
